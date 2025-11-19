@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <app-header></app-header>
+    
+    <main class="main-content">
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Les produits seront injectés ici -->
+            </div>
+        </section>
+        
+        <aside class="cart-section">
+            <app-cart></app-cart>
+        </aside>
+    </main>
+
+    <!-- Page de détails du produit -->
+    <product-details id="productDetails"></product-details>
+    
+    <!-- Page de checkout -->
+    <app-checkout id="checkout"></app-checkout>
+
+    <!-- IMPORTANT: Charger dans cet ordre -->
+    <script src="state.js"></script>
+    <script src="data/products.js"></script>
+    <script src="script.js"></script>
+    <script src="components/Header.js"></script>
+    <script src="components/ProductCard.js"></script>
+    <script src="components/ProductDetails.js"></script>
+    <script src="components/Cart.js"></script>
+    <script src="components/Checkout.js"></script>
+</body>
+</html>
