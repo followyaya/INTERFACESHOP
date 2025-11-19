@@ -8,7 +8,6 @@ import 'api_service.dart';
 class CartService extends ChangeNotifier {
   List<CartItem> _items = [];
   static const String _storageKey = 'shop_cart';
-  static const String _userIdKey = 'shop_user_id';
 
   List<CartItem> get items => _items;
   int get itemCount => _items.fold(0, (sum, item) => sum + item.quantity);

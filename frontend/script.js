@@ -102,19 +102,6 @@ async function initializeApp() {
     }, 400);
     
     console.log('✅ Application initialisée');
-    
-    // Vérifier périodiquement que le compteur est à jour (fallback)
-    setInterval(() => {
-        const countElement = document.getElementById('cartCount');
-        if (countElement && window.appState) {
-            const currentCount = parseInt(countElement.getAttribute('data-count') || '0');
-            const actualCount = window.appState.getCartCount();
-            if (currentCount !== actualCount) {
-                console.log('⚠️ Désynchronisation détectée:', currentCount, 'vs', actualCount);
-                updateCartCounter();
-            }
-        }
-    }, 1000);
 }
 
 // Variable pour stocker tous les produits (non filtrés)
@@ -213,15 +200,10 @@ function updateCartCounter() {
     }
     
     const count = window.appState.getCartCount();
-    const oldText = countElement.textContent;
     
-    console.log('🔢 Mise à jour du compteur - Count:', count, 'Cart:', window.appState.cart);
-    console.log('📝 Ancien texte:', oldText);
-    
-    // Mettre à jour le texte - forcer la mise à jour
+    // Mettre à jour le texte
     countElement.textContent = `🛒 ${count}`;
     countElement.setAttribute('data-count', count);
-    countElement.innerText = `🛒 ${count}`; // Double mise à jour pour forcer
     
     // Mettre à jour aussi via le Header component si disponible
     const headerElement = document.querySelector('app-header');
@@ -229,13 +211,7 @@ function updateCartCounter() {
         headerElement.updateCartCount();
     }
     
-    const newText = countElement.textContent;
-    console.log('✅ Compteur mis à jour:', count, 'Nouveau texte:', newText);
-    
-    // Vérification finale
-    if (newText === oldText && count > 0) {
-        console.warn('⚠️ Le texte n\'a pas changé malgré un count > 0');
-    }
+    console.log('✅ Compteur mis à jour:', count);
 }
 
 // Fonction pour afficher la page de détails du produit
@@ -268,13 +244,3 @@ function showProductDetails(product) {
         console.log('✅ show() appelé');
     }, 50);
 }
-
-// Fonction de test pour vérifier le compteur (accessible depuis la console)
-window.testCartCounter = function() {
-    console.log('🧪 Test du compteur du panier...');
-    console.log('appState:', window.appState);
-    console.log('Cart:', window.appState?.cart);
-    console.log('Count:', window.appState?.getCartCount());
-    console.log('Element:', document.getElementById('cartCount'));
-    updateCartCounter();
-};
