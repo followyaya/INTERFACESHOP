@@ -428,13 +428,11 @@ curl http://localhost:3001/api/products
 - Build iOS : `flutter build ios`
 - Publier sur Google Play Store / App Store
 
-## 📄 Licence
 
-Ce projet est un projet éducatif/démonstration.
 
 ## 👥 Auteur
 
-Développé dans le cadre d'un projet de boutique en ligne.
+Développé par sidy yaya traore.
 
 ---
 
